@@ -101,7 +101,7 @@
 			function initPlayer(source) {
 				if (Hls.isSupported()) {
 					const hls = new Hls();
-					hls.loadSource("https://black-flower-aa55.meader2015.workers.dev/?url=" + encodeURIComponent(originalUrl));
+					hls.loadSource("https://black-flower-aa55.meader2015.workers.dev/?url=" + encodeURIComponent(streamUrl));
 					hls.attachMedia(video);
 					hls.on(Hls.Events.MANIFEST_PARSED, () => {
 						statusText.innerText = "Playing: " + source;
