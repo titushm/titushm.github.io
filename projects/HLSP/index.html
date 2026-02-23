@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>HLSP</title>
+		<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+		<style>
+			:root {
+				--bg: #0a0a0a;
+				--card: #161616;
+				--accent: #ff4500;
+				--text: #e0e0e0;
+			}
+			body {
+				background: var(--bg);
+				color: var(--text);
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				min-height: 100vh;
+				padding: 20px;
+				box-sizing: border-box;
+			}
+			.container {
+				width: 100%;
+				max-width: 600px;
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+			}
+			.header {
+				text-align: center;
+				font-weight: 800;
+				letter-spacing: -1px;
+				color: var(--accent);
+				margin-bottom: 10px;
+			}
+			video {
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				background: #000;
+				border-radius: 12px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+			}
+			.input-group {
+				background: var(--card);
+				padding: 15px;
+				border-radius: 12px;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				border: 1px solid #222;
+			}
+			input {
+				background: #000;
+				border: 1px solid #333;
+				color: #fff;
+				padding: 12px;
+				border-radius: 8px;
+				font-size: 14px;
+				outline: none;
+				transition: border 0.2s;
+			}
+			input:focus {
+				border-color: var(--accent);
+			}
+			button {
+				background: var(--accent);
+				color: white;
+				border: none;
+				padding: 12px;
+				border-radius: 8px;
+				font-weight: bold;
+				cursor: pointer;
+				active: scale(0.98);
+				transition: transform 0.1s;
+			}
+			.status {
+				font-size: 12px;
+				color: #666;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="header">HLSP</h1>
+
+			<video id="video" controls playsinline></video>
+
+			<div class="input-group">
+				<input type="text" id="m3u8-url" placeholder="Paste .m3u8 URL here" value="" />
+				<button onclick="loadStream()">LOAD STREAM</button>
+			</div>
+
+			<div class="status" id="status">Ready for input</div>
+		</div>
+
+		<script>
+			const workerUrl = "https://silent-bird-b31b.meader2015.workers.dev/";
+			const video = document.getElementById("video");
+			const status = document.getElementById("status");
+			let hls;
+
+			function loadStream() {
+				const targetM3u8 = document.getElementById("m3u8-url").value.trim();
+
+				if (!targetM3u8) {
+					alert("URL is empty");
+					return;
+				}
+
+				const proxiedUrl = `${workerUrl}?url=${encodeURIComponent(targetM3u8)}`;
+
+				if (hls) {
+					hls.destroy();
+				}
+
+				if (Hls.isSupported()) {
+					hls = new Hls({
+						enableWorker: true,
+						lowLatencyMode: true,
+					});
+					hls.loadSource(proxiedUrl);
+					hls.attachMedia(video);
+					hls.on(Hls.Events.MANIFEST_PARSED, () => {
+						status.innerText = "Playing via Worker Proxy";
+						video.play();
+					});
+					hls.on(Hls.Events.ERROR, (event, data) => {
+						status.innerText = "Error: " + data.details;
+					});
+				} else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+					// For Safari/iOS
+					video.src = proxiedUrl;
+					status.innerText = "Native Safari Playback";
+				}
+			}
+		</script>
+	</body>
+</html>
