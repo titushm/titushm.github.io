@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Chrome HLS</title>
+		<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+		<style>
+			body {
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				background-color: #0f0f0f;
+				color: #efefef;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				margin: 0;
+				padding: 20px;
+			}
+			.container {
+				width: 100%;
+				max-width: 850px;
+				text-align: center;
+			}
+			video {
+				width: 100%;
+				border-radius: 12px;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+				background: #000;
+				margin-bottom: 20px;
+			}
+			.ui-box {
+				background: #1e1e1e;
+				padding: 25px;
+				border-radius: 12px;
+				border: 1px solid #333;
+			}
+			input[type="text"] {
+				width: 80%;
+				padding: 12px;
+				border-radius: 6px;
+				border: 1px solid #444;
+				background: #111;
+				color: #fff;
+				margin-bottom: 10px;
+			}
+			button {
+				padding: 12px 20px;
+				border-radius: 6px;
+				border: none;
+				background: #3498db;
+				color: white;
+				cursor: pointer;
+				font-weight: bold;
+				transition: background 0.2s;
+			}
+			button:hover {
+				background: #2980b9;
+			}
+			button.secondary {
+				background: #444;
+				margin-left: 5px;
+			}
+			button.secondary:hover {
+				background: #555;
+			}
+			.status {
+				margin-top: 15px;
+				font-size: 0.85rem;
+				color: #888;
+			}
+			.hidden {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<video id="video" controls autoplay></video>
+
+			<div class="ui-box" id="setupBox">
+				<h3>Stream Configuration</h3>
+				<input type="text" id="streamInput" placeholder="Paste .m3u8 URL here..." />
+				<br />
+				<button onclick="loadFromInput()">Load Stream</button>
+				<button class="secondary" id="copyBtn" onclick="copyLink()" style="display: none">Copy Link</button>
+				<div class="status" id="statusText">Ready to load...</div>
+			</div>
+		</div>
+
+		<script>
+			const video = document.getElementById("video");
+			const streamInput = document.getElementById("streamInput");
+			const statusText = document.getElementById("statusText");
+			const copyBtn = document.getElementById("copyBtn");
+
+			const urlParams = new URLSearchParams(window.location.search);
+			const streamUrl = urlParams.get("url");
+
+			function initPlayer(source) {
+				if (Hls.isSupported()) {
+					const hls = new Hls();
+					hls.loadSource(source);
+					hls.attachMedia(video);
+					hls.on(Hls.Events.MANIFEST_PARSED, () => {
+						statusText.innerText = "Playing: " + source;
+						video.play();
+						copyBtn.style.display = "inline-block";
+					});
+					hls.on(Hls.Events.ERROR, (e, data) => {
+						if (data.fatal) statusText.innerHTML = "<span style='color:red'>Failed to load stream.</span>";
+					});
+				}
+			}
+
+			// Handle initial load
+			if (streamUrl) {
+				streamInput.value = streamUrl;
+				initPlayer(streamUrl);
+			} else {
+				statusText.innerText = "Enter a URL above to start the player.";
+			}
+
+			function loadFromInput() {
+				const newUrl = streamInput.value.trim();
+				if (newUrl) {
+					window.location.search = `?url=${encodeURIComponent(newUrl)}`;
+				}
+			}
+
+			function copyLink() {
+				const fullUrl = window.location.href;
+				navigator.clipboard.writeText(fullUrl).then(() => {
+					const originalText = copyBtn.innerText;
+					copyBtn.innerText = "Copied!";
+					setTimeout(() => (copyBtn.innerText = originalText), 2000);
+				});
+			}
+		</script>
+	</body>
+</html>
