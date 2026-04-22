@@ -1,0 +1,1 @@
+import{V as e,g as t,v as n}from"../chunks/Bhd4MfXp.js";import"../chunks/CFKVnMbq.js";var r=e({prerender:()=>!0}),i=n(`<div class="error-container svelte-15h4f4n"><h1 class="svelte-15h4f4n">404</h1> <p>The page you're looking for doesn't exist.</p> <a href="/" class="svelte-15h4f4n">Return Home</a></div>`);function a(e){t(e,i())}export{a as component,r as universal};
