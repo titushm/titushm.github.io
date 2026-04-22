@@ -1,221 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TitusHM DEV</title>
-	<style>
-		body {
-			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			line-height: 1.6;
-			color: #e0e0e0;
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 20px;
-			background-color: #121212; /* Dark background */
-			height: 100vh;
-			position: relative;
-			overflow-x: hidden;
-		}
-		
-		.content-wrapper {
-			background-color: #1e1e1e;
-			border-radius: 12px;
-			padding: 30px;
-			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-			position: relative;
-			z-index: 1;
-		}
-		
-		header {
-			text-align: center;
-			margin-bottom: 40px;
-		}
-		
-		h1 {
-			font-size: 2.5rem;
-			margin-bottom: 10px;
-			color: #ffffff;
-		}
-		
-		.subtitle {
-			color: #b0b0b0;
-			font-size: 1.2rem;
-		}
-		
-		.links-container {
-			display: flex;
-			flex-direction: column;
-			gap: 15px;
-			margin: 30px 0;
-		}
-		
-		.link-card {
-			display: flex;
-			align-items: center;
-			padding: 15px;
-			background-color: #2d2d2d;
-			border-radius: 8px;
-			box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-			text-decoration: none;
-			color: #e0e0e0;
-			transition: transform 0.2s, box-shadow 0.2s;
-		}
-		
-		.link-card:hover {
-			transform: translateY(-3px);
-			box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-			background-color: #333333;
-		}
-		
-		.link-icon {
-			width: 24px;
-			height: 24px;
-			margin-right: 15px;
-			stroke: #b0b0b0;
-		}
-		
-		.link-text {
-			display: flex;
-			flex-direction: column;
-		}
-		
-		.link-title {
-			font-weight: 600;
-			color: #ffffff;
-		}
-		
-		.link-subtitle {
-			font-size: 0.9rem;
-			color: #909090;
-		}
-		
-		/* Info button and popup styles */
-		.info-container {
-			position: relative;
-			display: flex;
-			justify-content: flex-end;
-			margin-top: 20px;
-		}
-		
-		.info-button {
-			width: 24px;
-			height: 24px;
-			border-radius: 50%;
-			background-color: #333333;
-			color: #b0b0b0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			font-weight: bold;
-			font-size: 14px;
-			border: none;
-			transition: background-color 0.2s;
-		}
-		
-		.info-button:hover {
-			background-color: #444444;
-		}
-		
-		.info-popup {
-			position: absolute;
-			right: 0;
-			bottom: 30px;
-			width: 250px;
-			background-color: #2d2d2d;
-			border-radius: 6px;
-			padding: 12px;
-			box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-			font-size: 0.85rem;
-			color: #b0b0b0;
-			display: none;
-			z-index: 100;
-		}
-		
-		.info-container:hover .info-popup {
-			display: block;
-		}
-		
-		@media (max-width: 600px) {
-			body {
-				padding: 15px;
-			}
-			h1 {
-				font-size: 2rem;
-			}
-			.content-wrapper {
-				padding: 20px;
-			}
-		}
-		
-		/* Interactive background elements */
-		.bg-bubble {
-			position: absolute;
-			border-radius: 50%;
-			background: rgba(255, 255, 255, 0.05); /* Subtle light bubbles */
-			animation: float 8s ease-in-out infinite;
-			z-index: 0;
-		}
-		
-		@keyframes float {
-			0% {
-				transform: translateY(0) rotate(0deg);
-			}
-			50% {
-				transform: translateY(-20px) rotate(180deg);
-			}
-			100% {
-				transform: translateY(0) rotate(360deg);
-			}
-		}
-	</style>
-</head>
-<body>
-	<!-- Interactive background bubbles -->
-	<div class="bg-bubble" style="width: 80px; height: 80px; top: 10%; left: 10%; animation-delay: 0s;"></div>
-	<div class="bg-bubble" style="width: 120px; height: 120px; top: 20%; left: 80%; animation-delay: 1s;"></div>
-	<div class="bg-bubble" style="width: 150px; height: 150px; top: 50%; left: 70%; animation-delay: 2s;"></div>
-	<div class="bg-bubble" style="width: 100px; height: 100px; top: 70%; left: 20%; animation-delay: 3s;"></div>
-	<div class="bg-bubble" style="width: 60px; height: 60px; top: 80%; left: 80%; animation-delay: 4s;"></div>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link href="./_app/immutable/entry/start.3hJgGqc2.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CyHjdMlg.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BfBux-Fr.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.ByoyDWaU.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CHncfsjL.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/D1hYfEew.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.ClBtcsQO.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CSm6-Wsn.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/2.DGVh3Jdf.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="icon" href="/_app/immutable/assets/favicon.CsFB8j5d.svg"/><!---->
+		<link href="./_app/immutable/assets/0.nbrb3y_e.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/2.gSt7_OQa.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><nav class="source-code-nav svelte-12qhfyh"><div class="nav-wrapper svelte-12qhfyh"><div class="logo-group svelte-12qhfyh"><div class="logo svelte-12qhfyh"><span>TitusHM</span></div> <div class="vertical-divider svelte-12qhfyh"></div></div> <div class="nav-links-container svelte-12qhfyh"><ul class="nav-links svelte-12qhfyh"><!--[--><li class="svelte-12qhfyh"><a href="/" class="svelte-12qhfyh active">Home</a></li><li class="svelte-12qhfyh"><a href="/projects/" class="svelte-12qhfyh">Projects</a></li><li class="svelte-12qhfyh"><a href="/contact/" class="svelte-12qhfyh">Contact</a></li><!--]--> <div class="indicator hover-line svelte-12qhfyh" style="left: 16.666666666666668%;"></div> <div class="indicator active-line svelte-12qhfyh" style="left: 16.666666666666668%; opacity: 1;"></div></ul></div> <div class="spacer svelte-12qhfyh"></div></div></nav> <main class="svelte-12qhfyh"><!--[--><section class="home-page svelte-1uha8ag"><header class="about svelte-1uha8ag"><p class="svelte-1uha8ag">I am a software developer based in the UK.</p></header> <div class="features-grid svelte-1uha8ag"><div class="feature-card svelte-1uha8ag"><h3 class="svelte-1uha8ag">Native Apps</h3> <p class="svelte-1uha8ag">Developing native apps for desktop and mobile.</p> <div class="tech-stack svelte-1uha8ag"><span class="svelte-1uha8ag">C#</span> <span class="svelte-1uha8ag">Python</span> <span class="svelte-1uha8ag">Javascript</span> <span class="svelte-1uha8ag">C++</span> <span class="svelte-1uha8ag">Go</span> <span class="svelte-1uha8ag">C</span> <span class="svelte-1uha8ag">Lua</span> <span class="svelte-1uha8ag">Html</span> <span class="svelte-1uha8ag">Css</span></div></div> <div class="feature-card svelte-1uha8ag"><h3 class="svelte-1uha8ag">UI / UX Design</h3> <p class="svelte-1uha8ag">Designing unique and intuitive interfaces. Still learning.</p> <div class="tech-stack svelte-1uha8ag"><span class="svelte-1uha8ag">Figma</span> <span class="svelte-1uha8ag">Prototypes</span> <span class="svelte-1uha8ag">Affinity</span></div></div> <div class="feature-card svelte-1uha8ag"><h3 class="svelte-1uha8ag">Backend</h3> <p class="svelte-1uha8ag">Developing efficient backends including data management.</p> <div class="tech-stack svelte-1uha8ag"><span class="svelte-1uha8ag">Go</span> <span class="svelte-1uha8ag">SQL</span> <span class="svelte-1uha8ag">JSON</span></div></div></div></section><!--]--><!----></main><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_r7ldx0 = {
+						base: new URL(".", location).pathname.slice(0, -1)
+					};
 
-	<div class="content-wrapper">
-		<header>
-			<h1>TitusHM</h1>
-			<p class="subtitle">This website will have projects. WIP</p>
-		</header>
+					const element = document.currentScript.parentElement;
 
-		<main>
-			<div class="links-container">
-				<a href="https://github.com/titushm" class="link-card">
-					<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-					</svg>
-					<div class="link-text">
-						<span class="link-title">GitHub</span>
-						<span class="link-subtitle">@titushm</span>
-					</div>
-				</a>
-
-				<a href="mailto:titus@titushm.dev" class="link-card">
-					<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-						<polyline points="22,6 12,13 2,6"></polyline>
-					</svg>
-					<div class="link-text">
-						<span class="link-title">Email</span>
-						<span class="link-subtitle">titus@titushm.dev</span>
-					</div>
-				</a>
-			</div>
-
-			<div class="info-container">
-				<button class="info-button">i</button>
-				<div class="info-popup">
-					This website was generated by AI.
-				</div>
-			</div>
-		</main>
-	</div>
-</body>
+					Promise.all([
+						import("./_app/immutable/entry/start.3hJgGqc2.js"),
+						import("./_app/immutable/entry/app.ByoyDWaU.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
 </html>
